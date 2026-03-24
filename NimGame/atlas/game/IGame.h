@@ -8,6 +8,6 @@ namespace atlas::game {
     class IGame {
         public:
         virtual ~IGame() = default;
-        virtual void play() = 0;
+        virtual auto play() -> void = 0;
     };
 }

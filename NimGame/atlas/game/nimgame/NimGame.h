@@ -13,7 +13,7 @@ namespace atlas::game::nimgame {
         NimGame():stones_{23}{};
         virtual ~NimGame() = default;
 
-        void play() override {
+        auto play() -> void override {
             while (! isGameOver()) {
                 playRound();
             }
@@ -22,12 +22,12 @@ namespace atlas::game::nimgame {
     private:
         int stones_;
 
-        void playRound() {
+        auto playRound() -> void {
             humanMove();
             computerMove();
         }
 
-        void humanMove() {
+        auto humanMove() -> void {
             int turn;
             while (true) {
                 std::cout << "Es gibt " << stones_ <<  " Steine. Bitte nehmen Sie 1, 2 oder 3!\n";
@@ -37,7 +37,7 @@ namespace atlas::game::nimgame {
             }
             stones_-= turn;
         }
-        void computerMove() {
+        auto computerMove() -> void {
             if (isGameOver()) {
                 std::cout << "Du Loser!\n";
                 return;
@@ -53,7 +53,7 @@ namespace atlas::game::nimgame {
             std::cout << "Computer nimmt " << turn << "Steine." << std::endl;
             stones_ -= turn;
         }
-        bool isGameOver() {
+        auto isGameOver() -> bool {
             return stones_ < 1;
         }
     };

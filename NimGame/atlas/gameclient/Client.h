@@ -16,7 +16,7 @@ namespace atals::gameclient {
         }
 
         virtual ~Client() = default;
-        void go() {
+        auto go() -> void {
             game->play();
         }
 
