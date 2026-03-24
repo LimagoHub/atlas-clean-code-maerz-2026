@@ -19,40 +19,61 @@ namespace atlas::game::nimgame {
             }
         }
 
+
+
     private:
         int stones_;
+        int turn_;
 
-        auto playRound() -> void {
+        auto playRound() -> void {// Integration
             humanMove();
             computerMove();
         }
 
         auto humanMove() -> void {
-            int turn;
+
+            if (isGameOver()) return;
+
+
             while (true) {
                 std::cout << "Es gibt " << stones_ <<  " Steine. Bitte nehmen Sie 1, 2 oder 3!\n";
-                std::cin >> turn;
-                if ( turn >=1 && turn <= 3) break;
+                std::cin >> turn_;
+                if ( turn_ >=1 && turn_ <= 3) break;
                 std::cout << "Ungueltiger Zug!\n";
             }
-            stones_-= turn;
+            terminateMove( "Human");
         }
+
+
+
         auto computerMove() -> void {
-            if (isGameOver()) {
-                std::cout << "Du Loser!\n";
-                return;
-            }
-            if (stones_ == 1) {
-                stones_--;
-                std::cout << "Du hast nur Glueck gehabt\n";
-                return;
-            }
+
+            if (isGameOver()) return;
 
             const int zuege [] = {3,1,1,2};
-            const int turn = zuege[stones_ % 4];;
-            std::cout << "Computer nimmt " << turn << "Steine." << std::endl;
-            stones_ -= turn;
+            turn_ = zuege[stones_ % 4];;
+            std::cout << "Computer nimmt " << turn_ << "Steine." << std::endl;
+            terminateMove( "Computer");
         }
+
+
+
+
+        auto terminateMove( const std::string &player)-> void { // Integration
+            applyMove();
+            handleGameEnd(player);
+        }
+
+        auto handleGameEnd(const std::string &player)-> void {
+            if (isGameOver()) {
+                std::cout << player << " hat verloren"  << std::endl;
+            }
+        }
+        // ----------------------------------------- Implementierungssumpf -----------------------------
+        auto applyMove() -> void{
+            stones_ -= turn_;
+        }
+
         auto isGameOver() -> bool {
             return stones_ < 1;
         }
