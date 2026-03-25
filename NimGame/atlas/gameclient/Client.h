@@ -7,11 +7,11 @@
 
 #include "../game/IGame.h"
 
-namespace atals::gameclient {
-    using GAME = atlas::game::IGame;
+namespace atlas::gameclient {
+    using Game = atlas::game::IGame;
     class Client {
     public:
-        explicit Client(std::unique_ptr<GAME> game)
+        explicit Client(std::unique_ptr<Game> game)
             : game(std::move(game)) {
         }
 
@@ -21,7 +21,7 @@ namespace atals::gameclient {
         }
 
     private:
-        std::unique_ptr<GAME> game;
+        std::unique_ptr<Game> game;
 
     };
 } // gameclient

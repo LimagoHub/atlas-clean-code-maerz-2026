@@ -2,12 +2,13 @@
 #include "atlas/gameclient/Client.h"
 #include "atlas/game/nimgame/NimGame.h"
 
-using GAME = atlas::game::IGame;
-using CLIENT = atals::gameclient::Client;
+using Game = atlas::game::IGame;
+using GameClient = atlas::gameclient::Client;
+using NimGame = atlas::game::nimgame::NimGame;
 int main() {
-    std::unique_ptr<GAME> game;
+    std::unique_ptr<Game> game;
     game = std::make_unique<atlas::game::nimgame::NimGame>();
-    CLIENT client{std::move(game)};
+    GameClient client{std::move(game)};
     client.go();
     return 0;
 }
