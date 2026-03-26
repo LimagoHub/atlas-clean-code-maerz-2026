@@ -3,10 +3,10 @@
 //
 
 #pragma once
-#include "../Stopwatch.h"
+#include "../IStopwatch.h"
 
 namespace atlas::time {
-    class StopwatchImpl :public Stopwatch{
+    class StopwatchImpl :public IStopwatch{
         std::chrono::high_resolution_clock::time_point start_;
         std::chrono::high_resolution_clock::time_point end_;
     public:

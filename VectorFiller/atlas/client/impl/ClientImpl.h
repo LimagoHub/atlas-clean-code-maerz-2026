@@ -4,13 +4,13 @@
 #include <vector>
 #include <memory>
 #include <iostream>
-#include "../Client.h"
-#include "../../container/VectorFactory.h"
+#include "../IClient.h"
+#include "../../container/IVectorFactory.h"
 
 namespace atlas::client {
 
-    class VectorClientImpl: public Client {
-        using VECTOR = std::unique_ptr<atlas::container::VectorFactory<int> >;
+    class VectorClientImpl: public IClient {
+        using VECTOR = std::unique_ptr<atlas::container::IVectorFactory<int> >;
 
         VECTOR factory;
 
@@ -21,7 +21,7 @@ namespace atlas::client {
 
         ~VectorClientImpl() override = default;
 
-        auto doSomethingWithLargeContainer() noexcept ->void  override{
+        auto processVector() noexcept ->void  override{
 
             auto v = factory->createAndFillVector(INT32_MAX / 2);
             for (int i = 0; i < 3; ++i) {

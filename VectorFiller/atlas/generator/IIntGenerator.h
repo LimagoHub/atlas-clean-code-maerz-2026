@@ -3,11 +3,11 @@
 //
 
 #pragma once
-#include "Generator.h"
+#include "IGenerator.h"
 namespace atlas::generator {
-    class IntGenerator : public Generator<int>{
+    class IIntGenerator : public IGenerator<int>{
     public:
-        ~IntGenerator() override = default;
+        ~IIntGenerator() override = default;
     };
 }
 

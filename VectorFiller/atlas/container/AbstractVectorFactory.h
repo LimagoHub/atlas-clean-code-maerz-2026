@@ -5,11 +5,11 @@
 #pragma once
 
 #pragma once
-#include "VectorFactory.h"
+#include "IVectorFactory.h"
 namespace atlas::container {
 
     template<class T>
-    class AbstractVectorFactory: public VectorFactory<T>{
+    class AbstractVectorFactory: public IVectorFactory<T>{
 
 
         using VECTOR = std::shared_ptr<std::vector<T> >;

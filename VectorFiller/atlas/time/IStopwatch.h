@@ -9,6 +9,10 @@ namespace atlas::time {
     class IStopwatch {
     public:
         virtual ~IStopwatch() = default;
+
+        /**
+         * @throws StopwatchException
+         */
         virtual auto start() noexcept -> void = 0;
         virtual auto stop() noexcept -> void = 0;
 

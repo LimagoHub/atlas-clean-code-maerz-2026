@@ -5,10 +5,10 @@
 #pragma once
 #include <random>
 #include <climits>
-#include "../../IntGenerator.h"
+#include "../../IIntGenerator.h"
 
 namespace atlas::generator {
-    class MersenneTwisterNumberGenerator : public IntGenerator {
+    class MersenneTwisterNumberGenerator : public IIntGenerator {
     public:
         ~MersenneTwisterNumberGenerator() override = default;
 

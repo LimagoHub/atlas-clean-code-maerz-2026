@@ -5,12 +5,12 @@
 #pragma once
 #include <random>
 #include <climits>
-#include "../../IntGenerator.h"
+#include "../../IIntGenerator.h"
 #include <memory>
 #include <functional>
 
 namespace atlas::generator {
-    class GenericGeneratorImpl : public IntGenerator{
+    class GenericGeneratorImpl : public IIntGenerator{
     public:
         ~GenericGeneratorImpl() override = default;
         explicit GenericGeneratorImpl(int seed, const std::function<int(int)> &myFunc):
