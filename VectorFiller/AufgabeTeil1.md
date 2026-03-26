@@ -24,7 +24,7 @@ Der folgende Client-Code, der einen fertigen Vektor verarbeitet:
 namespace atlas::container {
 
     class Client {
-        using FACTORY_POINTER = std::unique_ptr<VectorFactory<int>>;
+        
 
         FACTORY_POINTER factory_;
         size_t size_;

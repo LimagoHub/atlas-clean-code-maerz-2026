@@ -38,7 +38,7 @@ class Metzger {
 
     public void schlachten(final Object tier) {
 
-  
+
 
 
         System.out.println("Messer wetz!");
