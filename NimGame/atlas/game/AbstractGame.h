@@ -12,7 +12,7 @@ namespace atlas::game {
     class AbstractGame: public IGame {
         using Player = player::IPlayer<BOARD, MOVE>;
         using PlayerPointer = std::unique_ptr<Player>;
-        using Writer = std::unique_ptr<atlas::io::Writer>;
+        using Writer = std::unique_ptr<io::Writer>;
 
     public:
         explicit AbstractGame(Writer writer)
@@ -30,8 +30,10 @@ namespace atlas::game {
 
         auto addPlayer(PlayerPointer player) -> void { players_.push_back(std::move(player)); }
 
+
         auto removePlayer(PlayerPointer player) -> void {
             // TODO implement later
+            //int n = 5;
         }
 
     private:
@@ -88,33 +90,29 @@ namespace atlas::game {
         }
 
 
-        auto  get_board() const -> const  BOARD& {
+        auto getBoard() const -> const BOARD& {
             return board_;
         }
 
-
-
-        auto get_move() const -> const MOVE& {
+        auto getMove() const -> const MOVE& {
             return move_;
         }
 
-
-        void set_board(const BOARD &board) {
+        auto setBoard(const BOARD &board) -> void {
             board_ = board;
         }
 
-        void set_move(const MOVE &move) {
+        auto setMove(const MOVE &move) -> void {
             move_ = move;
         }
 
-    protected:
         auto write(const std::string &message) const  -> void {
             writer_->write(message);
         }
 
-        virtual auto isGameOver() const noexcept -> bool = 0;
+        [[nodiscard]] virtual auto isGameOver() const noexcept -> bool = 0;
 
-        virtual auto isMoveValid() const noexcept -> bool = 0;
+        [[nodiscard]] virtual auto isMoveValid() const noexcept -> bool = 0;
 
         virtual auto applyMove() noexcept -> void = 0;
     };

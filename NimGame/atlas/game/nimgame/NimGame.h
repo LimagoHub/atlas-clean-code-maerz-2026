@@ -14,12 +14,12 @@
 namespace atlas::game::nimgame {
 
 
-    using Writer = std::unique_ptr<atlas::io::Writer>;
+    using Writer = std::unique_ptr<io::Writer>;
     class NimGame: public AbstractGame<int, int> {
 
     public:
-        explicit NimGame(std::unique_ptr<io::Writer> writer) : AbstractGame<int, int>(std::move(writer)) {
-            set_board(23);
+        explicit NimGame(std::unique_ptr<io::Writer> writer) : AbstractGame(std::move(writer)) {
+            setBoard(23);
         }
 
 
@@ -28,16 +28,16 @@ namespace atlas::game::nimgame {
 
         // ----------------------------------------- Implementierungssumpf -----------------------------
 
-        auto isMoveValid() const noexcept -> bool {
-            return get_move() >= 1 && get_move() <= 3;
+        [[nodiscard]] auto isMoveValid() const noexcept -> bool  override {
+            return getMove() >= 1 && getMove() <= 3;
         }
 
-        auto applyMove() noexcept -> void {
-            set_board(get_board()-get_move());
+        auto applyMove() noexcept -> void  override {
+            setBoard(getBoard() - getMove());
         }
 
-        auto isGameOver() const noexcept -> bool {
-            return get_board() < 1 || getPlayers().size() == 0;
+        [[nodiscard]] auto isGameOver() const noexcept -> bool  override {
+            return getBoard() < 1 || getPlayers().empty();
         }
     };
 }
